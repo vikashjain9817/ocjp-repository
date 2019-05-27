@@ -1,0 +1,27 @@
+create table order(orderId NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, recipientName varchar(30), customerId number, CONSTRAINT customerId FOREIGN KEY(customerId) REFERENCES customer(customerId), bookId number, CONSTRAINT bookId FOREIGN KEY(bookId) REFERENCES book(bookId), recipientPhoneNo varchar(15), streetAddress varchar(128), city varchar(32), zipcode varchar(24), country varchar(64));
+
+
+
+
+create table customer_review(reviewId NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, customerId number,  CONSTRAINT customerId FOREIGN KEY(customerId) REFERENCES customer(customerId), rating number, headline varchar(128), comments varchar(300));
+
+
+
+
+
+create table customer(customerId NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, customerName varchar(30), email varchar(64) unique, password varchar(16), phoneNumber varchar(15) unique, address varchar(128), city varchar(32), zipCode varchar(24), country varchar(64));
+
+
+
+create table book(bookId  NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,categoryId Number, CONSTRAINT categoryId FOREIGN KEY(categoryId) REFERENCES category(categoryId), title varchar(128), author varchar(64), description varchar(2000), ISBNno varchar(15), thumbnailImage varchar(128), price Decimal(3,2), publishDate date, lastUpdated Date, qtySold Number, totalQty Number);
+
+
+
+
+create table category(categoryId NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, categoryName varchar(30));
+
+
+create table admin(adminId NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, email varchar(64) unique, fullName varchar(30), password varchar(16));
+
+
+
